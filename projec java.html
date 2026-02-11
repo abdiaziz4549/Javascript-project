@@ -1,130 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jubatravel</title>
-</head>
-<body>
-    <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#eef6f9;
-}
-
-
-nav{
-  display:flex;
-  background:#0b3c5d;
-  color:white;
-  padding:12px;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-nav a{
-  color:white;
-  margin:0 10px;
-  cursor:pointer;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-
-.section{
-  display:none;
-  padding:20px;
-  text-align:center;
-}
-
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-  margin-top:15px;
-}
-
-
-.card{
-  background:white;
-  border-radius:8px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.05);
-}
-
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-}
-
-
-input, select, button{
-  width:100%;
-  max-width:400px;
-  padding:10px;
-  margin:6px auto;
-  border-radius:5px;
-  border:1px solid #ccc;
-  display:block;
-}
-
-button{
-  background:#0b3c5d;
-  color:white;
-  border:none;
-  cursor:pointer;
-}
-
-
-
-#bookingBox{
-  background:white;
-  border:1px solid #0b3c5d;
-  border-radius:8px;
-  padding:10px;
-  margin:15px auto;
-  max-width:500px;
-  max-height:200px;
-  overflow-y:auto;
-  text-align:left;
-}
-
-
-footer{
-  background:#0b3c5d;
-  color:rgb(243, 243, 243);
-  padding:15px;
-  text-align:center;
-  
-}
-
-
-@media (max-width:768px){
-  nav{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  nav div{
-    margin-top:10px;
-  }
-
-  .section{
-    padding:10px;
-  }
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juba Travel - Login & Booking</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#eef6f9;}
+nav{display:flex;background:#0b3c5d;color:white;padding:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+nav a{color:white;margin:0 10px;cursor:pointer;text-decoration:none;font-weight:bold;}
+.section{display:none;padding:20px;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:15px;}
+.card{background:white;border-radius:8px;overflow:hidden;cursor:pointer;transition:0.3s;}
+.card:hover{transform:scale(1.05);}
+.card img{width:100%;height:160px;object-fit:cover;}
+input, select, button{width:100%;max-width:400px;padding:10px;margin:6px auto;border-radius:5px;border:1px solid #ccc;display:block;}
+button{background:#0b3c5d;color:white;border:none;cursor:pointer;transition:0.3s;}
+button:hover{background:#084298;transform: scale(1.05);}
+#bookingBox{background:white;border:1px solid #0b3c5d;border-radius:8px;padding:10px;margin:15px auto;max-width:500px;max-height:200px;overflow-y:auto;text-align:left;}
+#loginFormContainer{width:350px;margin:50px auto;padding:30px;background:white;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.2);text-align:center;}
+#loginFormContainer h2{margin-bottom:20px;color:#0b3c5d;}
+#loginFormContainer input{width:80%;padding:10px;margin:12px 0;border-radius:6px;border:1px solid #ccc;font-size:16px;}
+#loginFormContainer input:focus{outline:none;border-color:#0b3c5d;}
+#loginFormContainer p{margin-top:15px;font-size:14px;}
+#loginFormContainer p a{color:#0b3c5d;text-decoration:none;}
+#loginFormContainer p a:hover{text-decoration:underline;}
+footer{background:#0b3c5d;color:rgb(243, 243, 243);padding:15px;text-align:center;}
+@media (max-width:768px){nav{flex-direction:column;text-align:center;}nav div{margin-top:10px;} .section{padding:10px;} #loginFormContainer{width:80%;}}
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -133,23 +36,29 @@ footer{
     <a id="homeNav">Home</a>
     <a id="aboutNav">About</a>
     <a id="contactNav">Contact</a>
+    <a id="loginNav">Login</a>
   </div>
 </nav>
+
+
+<div id="login" class="section">
+  <div id="loginFormContainer">
+    <h2>Login</h2>
+    <input type="text" id="loginPhone" placeholder="Phone (061XXXXXXXX)">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button id="loginBtn">Login</button>
+    <p class="message">Not registered? <a href="#" id="registerLink">Create an account</a></p>
+  </div>
+</div>
 
 
 <div id="home" class="section">
   <h2>Available Countries</h2>
   <p>Select the country you want to book:</p>
-
-  <select id="countrySelect">
-    <option value="">-- Select Country --</option>
-  </select>
-
+  <select id="countrySelect"><option value="">-- Select Country --</option></select>
   <input type="date" id="travelDate">
   <button id="bookBtn">Book Country</button>
-
   <div class="grid" id="countries"></div>
-
   <h3>Bookings:</h3>
   <div id="bookingBox">Your bookings will appear here.</div>
 </div>
@@ -157,10 +66,7 @@ footer{
 
 <div id="about" class="section">
   <h2>About Juba Travel Agency</h2>
-  <p>
-    Juba Travel Agency provides reliable travel booking services,
-    offering top destinations and personalized travel plans.
-  </p>
+  <p>Juba Travel Agency provides reliable travel booking services, offering top destinations and personalized travel plans.</p>
 </div>
 
 
@@ -170,80 +76,102 @@ footer{
   <p>Phone: +252 61 0799003</p>
 </div>
 
-<footer>
-  <p> 2026 Juba Travel Agency</p>
-</footer>
+<footer><p>2026 Juba Travel Agency</p></footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
 
-  const sections = document.querySelectorAll(".section");
-  const homeNav = document.getElementById("homeNav");
-  const aboutNav = document.getElementById("aboutNav");
-  const contactNav = document.getElementById("contactNav");
+const sections = document.querySelectorAll(".section");
+function showSection(id){ sections.forEach(s=>s.style.display="none"); document.getElementById(id).style.display="block"; }
 
-  const countrySelect = document.getElementById("countrySelect");
-  const travelDate = document.getElementById("travelDate");
-  const bookBtn = document.getElementById("bookBtn");
-  const countriesDiv = document.getElementById("countries");
-  const bookingBox = document.getElementById("bookingBox");
 
-  const data = [
-    {name:"Kenya", price:80, img:"11688efc89e5f954cf534bf8db31dc81.jpg"},
-    {name:"Turkey", price:100, img:"a71b9f479ab2ed5d856314eb03079568.jpg"},
-    {name:"Malaysia", price:90, img:"df55dba498b6872b29bc214cf6dfe501.jpg"},
-    {name:"Ethiopia", price:70, img:"8fa47a8c4bcc28a6f9f0f7339f8f26be.jpg"}
-  ];
+showSection("login");
 
-  let bookings = [];
 
-  function showSection(id){
-    sections.forEach(s => s.style.display="none");
-    document.getElementById(id).style.display="block";
-  }
+document.getElementById("homeNav").onclick=()=>registered?showSection("home"):showSection("login");
+document.getElementById("aboutNav").onclick=()=>showSection("about");
+document.getElementById("contactNav").onclick=()=>showSection("contact");
+document.getElementById("loginNav").onclick=()=>showSection("login");
+document.getElementById("registerLink").onclick=()=>alert("Redirect to Register page");
 
-  data.forEach(d=>{
-    let option = document.createElement("option");
-    option.value = d.name;
-    option.textContent = d.name;
-    countrySelect.appendChild(option);
 
-    let card = document.createElement("div");
-    card.className="card";
-    card.innerHTML = `
-      <img src="${d.img}">
-      <p><strong>${d.name}</strong><br>$${d.price}</p>
-    `;
-    countriesDiv.appendChild(card);
-  });
+const loginPhone = document.getElementById("loginPhone");
+const loginPassword = document.getElementById("loginPassword");
+const loginBtn = document.getElementById("loginBtn");
+let registered=false;
 
-  bookBtn.onclick = function(){
-    if(!countrySelect.value || !travelDate.value){
-      alert("Please select country and date");
-      return;
-    }
 
+loginPhone.addEventListener("input", ()=>{
+    loginPhone.style.border=/^61\d{6,8}$/.test(loginPhone.value)?"2px solid green":"2px solid red";
+});
+
+
+loginPassword.addEventListener("input", ()=>{
+    const pass = loginPassword.value;
+    const hasUpper = /[A-Z]/.test(pass);
+    const hasSymbol = /[^A-Za-z0-9]/.test(pass);
+    const minLength = pass.length>=8;
+    loginPassword.style.border=(hasUpper && hasSymbol && minLength)?"2px solid green":"2px solid red";
+});
+
+loginBtn.addEventListener("click", ()=>{
+    let errors=[];
+    if(!/^61\d{6,8}$/.test(loginPhone.value)) errors.push("Phone invalid");
+    const pass = loginPassword.value;
+    const hasUpper = /[A-Z]/.test(pass);
+    const hasSymbol = /[^A-Za-z0-9]/.test(pass);
+    const minLength = pass.length>=8;
+    if(!(hasUpper && hasSymbol && minLength)) 
+        errors.push("Password must be 8+ chars, include uppercase & symbol");
+    if(errors.length>0){ alert(errors.join("\n")); return; }
+    alert("Login successful!");
+    loginPhone.value=""; loginPassword.value="";
+    loginPhone.style.border=""; loginPassword.style.border="";
+    registered=true;
+    showSection("home");
+});
+
+
+const countrySelect = document.getElementById("countrySelect");
+const travelDate = document.getElementById("travelDate");
+const bookBtn = document.getElementById("bookBtn");
+const countriesDiv = document.getElementById("countries");
+const bookingBox = document.getElementById("bookingBox");
+
+const data = [
+  {name:"Kenya", price:80, img:"11688efc89e5f954cf534bf8db31dc81.jpg"},
+  {name:"Turkey", price:100, img:"a71b9f479ab2ed5d856314eb03079568.jpg"},
+  {name:"Malaysia", price:90, img:"df55dba498b6872b29bc214cf6dfe501.jpg"},
+  {name:"Ethiopia", price:70, img:"8fa47a8c4bcc28a6f9f0f7339f8f26be.jpg"}
+];
+
+let bookings = [];
+
+data.forEach(d=>{
+  let option=document.createElement("option"); option.value=d.name; option.textContent=d.name; countrySelect.appendChild(option);
+  let card=document.createElement("div"); card.className="card"; card.innerHTML=`<img src="${d.img}"><p><strong>${d.name}</strong><br>$${d.price}</p>`;
+  countriesDiv.appendChild(card);
+});
+
+
+countrySelect.addEventListener("change",()=>{countrySelect.style.border=countrySelect.value?"3px solid green":"3px solid red";});
+travelDate.addEventListener("change",()=>{
+    const today=new Date(); const selected=new Date(travelDate.value);
+    travelDate.style.border=(travelDate.value && selected>=today)?"3px solid green":"3px solid red";
+});
+
+
+bookBtn.addEventListener("click", ()=>{
+    if(!registered){ showSection("login"); return; }
+    let errors=[];
+    const today=new Date(); const selected=new Date(travelDate.value);
+    if(!countrySelect.value) errors.push("Select a country");
+    if(!travelDate.value || selected<today) errors.push("Select valid travel date");
+    if(errors.length>0){ alert(errors.join("\n")); return; }
     const country = data.find(c=>c.name===countrySelect.value);
-    bookings.push({
-      country: country.name,
-      price: country.price,
-      date: travelDate.value
-    });
-
+    bookings.push({country:country.name,price:country.price,date:travelDate.value});
     bookingBox.innerHTML="";
-    bookings.forEach((b,i)=>{
-      bookingBox.innerHTML += `${i+1}. ${b.country} - $${b.price} on ${b.date}<br>`;
-    });
-
-    countrySelect.value="";
-    travelDate.value="";
-  }
-
-  homeNav.onclick=()=>showSection("home");
-  aboutNav.onclick=()=>showSection("about");
-  contactNav.onclick=()=>showSection("contact");
-
-  showSection("home");
+    bookings.forEach((b,i)=>{bookingBox.innerHTML+=`${i+1}. ${b.country} - $${b.price} on ${b.date}<br>`;});
+    countrySelect.value=""; travelDate.value=""; countrySelect.style.border=""; travelDate.style.border="";
 });
 </script>
 </body>
